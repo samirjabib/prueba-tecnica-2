@@ -7,25 +7,24 @@ const { BusinessDetail, StateBusiness, ListCompanies } = lazily(() =>
   import("../pages")
 );
 
-export const DashboardRoutes = ({ user }) => {
+export const DashboardRoutes = ({ user, onLogout }) => {
   const { data, isLoading, error } = useGetCompaniesQuery();
 
   return (
     <Routes>
-      <Route path="/" element={<DashboardLayout user={user} />}>
+      <Route
+        path="/"
+        element={<DashboardLayout user={user} onLogout={onLogout} />}
+      >
         {user.role === "client" ? (
           <>
             <Route
               path="/"
               element={
-                <ListCompanies
-                  data={data}
-                  isLoading={true}
-                  error={error}
-                />
+                <ListCompanies data={data} isLoading={true} error={error} />
               }
             />
-            <Route path="/:id" element={<BusinessDetail />} />
+            <Route path="details/:id" element={<BusinessDetail />} />
           </>
         ) : (
           <>
@@ -36,11 +35,7 @@ export const DashboardRoutes = ({ user }) => {
             <Route
               path="/"
               element={
-                <ListCompanies
-                  data={data}
-                  isLoading={true}
-                  error={error}
-                />
+                <ListCompanies data={data} isLoading={true} error={error} />
               }
             />
             <Route path="/:id" element={<BusinessDetail />} />

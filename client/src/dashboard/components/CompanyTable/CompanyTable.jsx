@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const CompanyTable = ({ data, isLoading, error }) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -19,16 +21,18 @@ export const CompanyTable = ({ data, isLoading, error }) => {
       </thead>
       <tbody>
         {data?.map((companyData, index) => {
-
-            const {name, address, nit, phone} = companyData
+          const { name, address, nit, phone } = companyData;
 
           return (
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
+            <tr
+              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              key={index}
+            >
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white cursor-pointer"
               >
-                {name}
+                <Link to={`/details/${nit}`}>{name}</Link>
               </th>
 
               <td className="px-6 py-4">{address}</td>

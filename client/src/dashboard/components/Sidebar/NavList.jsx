@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { getNavLinks } from "../../utils";
 
-export const NavList = ({ user }) => {
+export const NavList = ({ user, onLogout }) => {
+  console.log(onLogout);
   const links = getNavLinks(user);
 
   return (
@@ -9,7 +10,7 @@ export const NavList = ({ user }) => {
       <ul className="space-y-2">
         {links.map((route) => {
           return (
-            <li key={route.id}>
+            <li key={route.id} onClick={(route.name === "Logout") ? onLogout : undefined}>
               <NavLink
                 to={route.path}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
