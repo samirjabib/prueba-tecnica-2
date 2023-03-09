@@ -1,39 +1,13 @@
 import { NavLink } from "react-router-dom";
-
-import { MdSpaceDashboard } from "react-icons/md";
-import { RiAdminFill } from "react-icons/ri";
-import { HiLogout } from "react-icons/hi";
 import { getNavLinks } from "../../utils";
 
-const navLinksData = [
-  {
-    id: 1,
-    name: "Dashboard",
-    icon: <MdSpaceDashboard />,
-    path: "/",
-  },
-  {
-    id: 2,
-    name: "Admin",
-    icon: <RiAdminFill />,
-    path: "/",
-  },
-  {
-    id: 3,
-    name: "Logout",
-    icon: <HiLogout />,
-    path: "/",
-  },
-];
-
-export const NavList = ({user}) => {
-
-    const links = getNavLinks(user)
+export const NavList = ({ user }) => {
+  const links = getNavLinks(user);
 
   return (
     <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <ul className="space-y-2">
-        {navLinksData.map((route) => {
+        {links.map((route) => {
           return (
             <li key={route.id}>
               <NavLink

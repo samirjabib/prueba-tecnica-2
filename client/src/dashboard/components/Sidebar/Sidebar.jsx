@@ -3,6 +3,7 @@ import { NavList } from "./NavList";
 
 
 export const Sidebar = ({user}) => {
+  
   const { handleNavbar, open, ref } = useNavBar();
 
   return (

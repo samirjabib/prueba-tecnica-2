@@ -1,32 +1,28 @@
-
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { HiLogout } from "react-icons/hi";
 
-
 const navLinksAdmin = [
-    {
-      id: 1,
-      name: "Dashboard",
-      icon: <MdSpaceDashboard />,
-      path: "/",
-    },
-    {
-      id: 2,
-      name: "Admin",
-      icon: <RiAdminFill />,
-      path: "/",
-    },
-    {
-      id: 2,
-      name: "Logout",
-      icon: <HiLogout />,
-      path: "/",
-    },
-  ];
+  {
+    id: 1,
+    name: "Dashboard",
+    icon: <MdSpaceDashboard />,
+    path: "/",
+  },
+  {
+    id: 2,
+    name: "Admin",
+    icon: <RiAdminFill />,
+    path: "/",
+  },
+  {
+    id: 3,
+    name: "Logout",
+    icon: <HiLogout />,
+    path: "/",
+  },
+];
 
-
-  
 const navLinksClient = [
   {
     id: 1,
@@ -42,12 +38,13 @@ const navLinksClient = [
   },
 ];
 
-export const getNavLinks = ({user}) => {
+export const getNavLinks = ({ user }) => {
+  console.log(user);
 
-  if(user.role === "admin"){
-    return navLinksAdmin
-  } else {
-    return navLinksClient
+  if (user.role === "admin") {
+    return navLinksAdmin;
   }
-
-}
+  if (user.role === "client") {
+    return navLinksClient;
+  }
+};
