@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "../auth";
-import { Dashboard } from "../dashboard";
+import { DashboardRoutes } from "../dashboard";
 import { useProviderTheme } from "../hooks";
 
 const user = {
@@ -36,7 +36,7 @@ export const AppRouter = () => {
           element={<Login setTheme={handleThemeSwitch} theme={theme} />}
         />
       ) : (
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<DashboardRoutes/>} />
       )}
     </Routes>
   );
