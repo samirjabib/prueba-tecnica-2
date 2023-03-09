@@ -39,7 +39,7 @@ export const Sidebar = ({user, onLogout, theme, handleTheme}) => {
         <NavList user={user} onLogout={onLogout} theme={theme} handleTheme={handleTheme} />
       </aside>
       <div
-        className={`w-full h-screen fixed scroll- -z-50 right-0 top-0 bg-black/70 ${
+        className={`w-full h-screen fixed scroll- z-30 right-0 top-0 bg-black/70 ${
           open ? "block" : "hidden"
         }`}
       ></div>

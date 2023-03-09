@@ -2,7 +2,7 @@ export const ProductList = ({ products, user }) => {
   const { role } = user.user;
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-16 max-w-md mx-auto">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-16 max-w-md mx-auto ">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -22,7 +22,7 @@ export const ProductList = ({ products, user }) => {
         {products.map((product) => {
           const { id, name } = product;
           return (
-            <tbody key={id}>
+            <tbody key={id} className='-z-50'> 
               <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <th
                   scope="row"
