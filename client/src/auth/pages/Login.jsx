@@ -29,7 +29,7 @@ export const Login = () => {
     formValidations
   );
   const { email, password } = formState;
-  const [login, { isLoading, error, data }] = useLoginMutation();
+  const [login, { isLoading, error, data, status }] = useLoginMutation();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +37,10 @@ export const Login = () => {
       email,
       password,
     });
-    onLoginEmailAndPassword(data)
+    if (!isLoading) {
+      onLoginEmailAndPassword(data);
+    }
+    onResetForm();
   };
 
   return (
@@ -82,7 +85,11 @@ export const Login = () => {
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
           >
-            {(isLoading === true) ? <ClipLoader color="#36d7b7" size={25}/> : 'Login to your account' }
+            {isLoading ? (
+              <ClipLoader color="#36d7b7" size={25} />
+            ) : (
+              "Login to your account"
+            )}
           </button>
         </form>
       </div>

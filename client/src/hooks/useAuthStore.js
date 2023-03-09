@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const useAuthStore = () => {
   const { status, user, token } = useSelector((state) => state.auth);
-
+  
+  console.log(status, user, token)
+  
   const dispatch = useDispatch();
 
   const onLoginEmailAndPassword = (payload) => {
-    console.log(payload);
-    dispatch(onLogin(data));
+    const { token, user } = payload
+    
+    dispatch(onLogin({ user, token}));
   };
 
   const onLogoutHandle = () => {
