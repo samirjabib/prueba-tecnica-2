@@ -7,10 +7,11 @@ export const useAuthStore = () => {
 
   const dispatch = useDispatch();
 
-  const onLoginEmailAndPassword = async(payload) => {
-     const { token, user } = payload;
-
-     dispatch(onLogin({ user, token }));
+  const onLoginEmailAndPassword = async (payload) => {
+    const { token, user } = payload;
+    if (token && user) {
+      dispatch(onLogin({ user, token }));
+    }
   };
 
   const onLogoutHandle = () => {

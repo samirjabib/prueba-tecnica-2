@@ -15,6 +15,8 @@ export const BusinessDetail = ({user}) => {
   const { name, address, inventary, phone } = data;
   const { products } = inventary;
   console.log(products);
+  const dispatch = useDispatch();
+
 
   return (
     <div className="mt-20">

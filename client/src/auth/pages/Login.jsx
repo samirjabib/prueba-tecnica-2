@@ -7,6 +7,8 @@ import { InputCustom } from "../components";
 
 import { useAuthStore, useProviderTheme } from "../../hooks";
 import { useLoginMutation } from "../../store/api/businessApi";
+import { onLogin } from "../../store/slices/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const formValidations = {
   email: [(value) => value.includes("@"), "The email must contain a @"],
@@ -29,19 +31,21 @@ export const Login = ({ theme, handleTheme }) => {
     formValidations
   );
   const { email, password } = formState;
-  const [login, { isLoading, error, data }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await login({
+    const { data } = await login({
       email,
       password,
     });
 
-    if (data) {
-      onLoginEmailAndPassword(data);
-    }
+    const { user, token} = data
+    
+    dispatch(onLogin({ user, token }));
+
     onResetForm();
   };
 
