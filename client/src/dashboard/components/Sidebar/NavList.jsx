@@ -4,7 +4,6 @@ import { CiDark } from "react-icons/ci";
 import { BsSun } from "react-icons/BS";
 
 export const NavList = ({ user, onLogout, theme, handleTheme }) => {
-  
   const links = getNavLinks(user);
 
   return (
@@ -28,7 +27,10 @@ export const NavList = ({ user, onLogout, theme, handleTheme }) => {
             </li>
           );
         })}
-        <div className="flex w-24 h-24   border-[#111827] shadow-lg rounded-full mx-auto  items-center justify-center absolute bottom-12 left-20 cursor-pointer transition-all hover:scale-95" onClick={handleTheme}>
+        <div
+          className="flex w-24 h-24   border-[#111827] shadow-lg rounded-full mx-auto  items-center justify-center absolute bottom-12 left-20 cursor-pointer transition-all hover:scale-95"
+          onClick={handleTheme}
+        >
           {theme === "dark" ? (
             <CiDark size={32} color="white" />
           ) : (
