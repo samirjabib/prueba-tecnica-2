@@ -22,11 +22,10 @@ export const Companies = ({ data, isLoading, error }) => {
           Add Company
         </button>
         <Modal
-          ref={ref}
           handleOutSideClick={handleOutSideClick}
           modalOpen={modalOpen}
           handleModal={handleModal}
-          children={<FormCrud />}
+          children={<FormCrud ref={ref} />}
         />
       </div>
     </>
