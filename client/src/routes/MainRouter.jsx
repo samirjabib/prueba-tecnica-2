@@ -18,12 +18,12 @@ export const AppRouter = () => {
       <Routes>
         {status === "not-authenticated" ? (
           <Route
-            path="/"
+            path="/*"
             element={<Login/>}
           />
         ) : (
           <Route
-            path="/"
+            path="/*"
             element={
               <Suspense fallback={<GlobalLoading />}>
                 <DashboardRoutes user={user} onLogout={onLogoutHandle} />

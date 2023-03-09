@@ -4,6 +4,6 @@ export const BusinessDetail = () => {
   const { id } = useParams()
   console.log(id)
   return (
-    <div>BusinessDetail</div>
+    <div>hola soy el negocio con {id}</div>
   )
 }

@@ -39,7 +39,6 @@ const navLinksClient = [
 ];
 
 export const getNavLinks = ({ user }) => {
-  console.log(user);
 
   if (user.role === "admin") {
     return navLinksAdmin;

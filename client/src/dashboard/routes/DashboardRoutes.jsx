@@ -24,7 +24,7 @@ export const DashboardRoutes = ({ user, onLogout }) => {
                 <ListCompanies data={data} isLoading={true} error={error} />
               }
             />
-            <Route path="details/:id" element={<BusinessDetail />} />
+            <Route path=":id" element={<BusinessDetail />} />
           </>
         ) : (
           <>
@@ -38,7 +38,7 @@ export const DashboardRoutes = ({ user, onLogout }) => {
                 <ListCompanies data={data} isLoading={true} error={error} />
               }
             />
-            <Route path="/:id" element={<BusinessDetail />} />
+            <Route path="/details/:id" element={<BusinessDetail />} />
           </>
         )}
 
