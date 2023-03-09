@@ -23,7 +23,7 @@ export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
       >
         <Route
           path="/"
-          element={<Companies data={data} isLoading={true} error={error} />}
+          element={<Companies data={data} isLoading={true} error={error} user={user}/>}
         />
         <Route path=":id" element={<BusinessDetail />} />
 

@@ -13,8 +13,8 @@ export const Modal = ({
         modalOpen ? "block" : "hidden"
       }`}
     >
-      <div className="relative bg-white w-full p-8 sm:left-28  max-w-sm   shadow-md  rounded-lg  dark:bg-gray-700">
-        <div className="flex justify-end transition-all cursor-pointer ">
+      <div className="relative bg-white w-[90%] p-8 sm:left-28  max-w-sm  shadow-md  rounded-lg  dark:bg-gray-700">
+        <div className="flex justify-end transition-all cursor-pointer mb-6">
           <AiFillCloseCircle
             size={30}
             color="#2563eb"

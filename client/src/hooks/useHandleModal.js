@@ -16,23 +16,23 @@ export const useHandleModal = () => {
     body.style.overflow = "auto";
   }
 
-  const ref = useRef();
+  // const ref = useRef();
 
-  useEffect(() => {
-    document.addEventListener("click", handleOutSideClick, true);
+  // useEffect(() => {
+  //   document.addEventListener("click", handleOutSideClick, true);
 
-    return document.removeEventListener("click", handleOutSideClick, false);
-  }, []);
+  //   return document.removeEventListener("click", handleOutSideClick, false);
+  // }, []);
 
-  const handleOutSideClick = ({ target }) => {
-    if (!ref.current?.contains(target)) {
-      //   setModalOpen(false);
-      console.log(target, 'soy el target')
-    }
-  };
+  // const handleOutSideClick = ({ target }) => {
+  //   if (!ref.current?.contains(target)) {
+  //     //   setModalOpen(false);
+  //     console.log(target, 'soy el target')
+  //   }
+  // };
 
   return {
-    ref,
+    // ref,
     modalOpen,
     handleModal,
   };

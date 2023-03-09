@@ -28,7 +28,20 @@ export const businessApi = createApi({
     getCompaniesByNit: builder.query({
       query: (id) => `/company/${id}`,
     }),
+    createProductCompany: builder.mutation({
+      query: (data, id) => ({
+        url: `/company/${id}`,
+        method: "post",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation,useGetCompaniesByNitQuery, useGetCompaniesQuery, useCreateCompanyMutation } = businessApi;
+export const {
+  useLoginMutation,
+  useGetCompaniesByNitQuery,
+  useGetCompaniesQuery,
+  useCreateCompanyMutation,
+  useCreateProductCompanyMutation,
+} = businessApi;

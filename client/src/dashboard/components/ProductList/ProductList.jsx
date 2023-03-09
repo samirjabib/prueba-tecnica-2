@@ -1,5 +1,6 @@
-export const ProductList = ({ products, user }) => {
-  const { role } = user.user;
+
+
+export const ProductList = ({ products, user, handleModal, modalOpen }) => {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-16 max-w-md mx-auto ">
@@ -12,7 +13,7 @@ export const ProductList = ({ products, user }) => {
             <th scope="col" className="px-6 py-3">
               Product name
             </th>
-            {user.role ===  "admin" && (
+            {user.role === "admin" && (
               <th scope="col " className="px-6 py-3 ">
                 Action
               </th>
@@ -22,7 +23,7 @@ export const ProductList = ({ products, user }) => {
         {products.map((product) => {
           const { id, name } = product;
           return (
-            <tbody key={id} className='-z-50'> 
+            <tbody key={id} className="-z-50">
               <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <th
                   scope="row"
@@ -46,6 +47,7 @@ export const ProductList = ({ products, user }) => {
           );
         })}
       </table>
+
     </div>
   );
 };

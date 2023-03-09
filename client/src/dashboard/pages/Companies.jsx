@@ -2,8 +2,9 @@ import { CompanyTable, FormCrud } from "../components";
 import { Modal } from "../../components";
 import { useHandleModal } from "../../hooks";
 
-export const Companies = ({ data, isLoading, error }) => {
-  const { handleModal, handleOutSideClick, modalOpen, ref } = useHandleModal();
+export const Companies = ({ data, isLoading, error, user }) => {
+  const { handleModal, handleOutSideClick, modalOpen } = useHandleModal();
+  const { role } = user.user;
 
   return (
     <>
@@ -14,19 +15,25 @@ export const Companies = ({ data, isLoading, error }) => {
         <div className="overflow-x-auto shadow-md sm:rounded-lg ">
           <CompanyTable data={data} isLoading={isLoading} error={error} />
         </div>
-        <button
-          className=" absolute right-0 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-          onClick={handleModal}
-        >
-          Add Company
-        </button>
-        <Modal
-          handleOutSideClick={handleOutSideClick}
-          modalOpen={modalOpen}
-          handleModal={handleModal}
-          children={<FormCrud ref={ref} />}
-        />
+        {role === "admin" && (
+          <>
+            {" "}
+            <button
+              className=" absolute right-0 mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+              onClick={handleModal}
+            >
+              Add Company
+            </button>
+            <Modal
+              title="Register Company"
+              handleOutSideClick={handleOutSideClick}
+              modalOpen={modalOpen}
+              handleModal={handleModal}
+              children={<FormCrud handleModal={handleModal} />}
+            />
+          </>
+        )}
       </div>
     </>
   );
