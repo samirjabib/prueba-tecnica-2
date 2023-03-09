@@ -3,12 +3,10 @@ import { BsSun } from "react-icons/BS";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import { useForm } from "../../hooks/useFormHook";
-import { InputCustom } from "../components";
+import { InputCustom } from "../../components";
 
-import { useAuthStore, useProviderTheme } from "../../hooks";
+import { useAuthStore } from "../../hooks";
 import { useLoginMutation } from "../../store/api/businessApi";
-import { onLogin } from "../../store/slices/auth/authSlice";
-import { useDispatch } from "react-redux";
 
 const formValidations = {
   email: [(value) => value.includes("@"), "The email must contain a @"],

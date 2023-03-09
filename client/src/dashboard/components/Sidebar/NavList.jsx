@@ -4,6 +4,7 @@ import { CiDark } from "react-icons/ci";
 import { BsSun } from "react-icons/BS";
 
 export const NavList = ({ user, onLogout, theme, handleTheme }) => {
+  
   const links = getNavLinks(user);
 
   return (

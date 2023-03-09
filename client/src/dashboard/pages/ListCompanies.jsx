@@ -10,10 +10,10 @@ export const ListCompanies = ({ data, isLoading, error }) => {
       <h1 className="text-4xl mt-24 mb-12 text-gray-700 uppercase  dark:text-gray-400 text-center font-bold">
         Registered companies
       </h1>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg max-w-2xl mx-auto mt-24">
         <CompanyTable data={data} isLoading={isLoading} error={error} />
-
       </div>
+      
     </>
   );
 };

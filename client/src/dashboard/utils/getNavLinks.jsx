@@ -10,12 +10,6 @@ const navLinksAdmin = [
     path: "/",
   },
   {
-    id: 2,
-    name: "Admin",
-    icon: <RiAdminFill />,
-    path: "/",
-  },
-  {
     id: 3,
     name: "Logout",
     icon: <HiLogout />,
