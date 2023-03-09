@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { SidebarMobile } from "./SidebarMovil";
-import Hamburger from "hamburger-react";
-import { SidebarWeb } from "./SidebarWeb";
+
 
 export const Sidebar = () => {
   const [open, setOpen] = useState(false);
