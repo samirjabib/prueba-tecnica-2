@@ -1,6 +1,11 @@
+import { Suspense } from "react";
+import { lazily } from "react-lazily";
 import { Routes, Route, Navigate } from "react-router-dom";
+
+const { DashboardRoutes } = lazily(() => import("../dashboard"));
+
 import { Login } from "../auth";
-import { DashboardRoutes } from "../dashboard";
+import { GlobalLoading } from "../components";
 import { useProviderTheme } from "../hooks";
 
 const user = {
@@ -29,15 +34,25 @@ export const AppRouter = () => {
   const { theme, handleThemeSwitch } = useProviderTheme();
 
   return (
-    <Routes>
-      {(user.auth === "not-authorized") ? (
-        <Route
-          path="/"
-          element={<Login setTheme={handleThemeSwitch} theme={theme} />}
-        />
-      ) : (
-        <Route path="/" element={<DashboardRoutes user={user}/>} />
-      )}
-    </Routes>
+    <Suspense fallback={<GlobalLoading />}>
+      <Routes>
+        {noUser.auth === "not-authorized" ? (
+          <Route
+            path="/"
+            element={<Login setTheme={handleThemeSwitch} theme={theme} />}
+          />
+        ) : (
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<GlobalLoading/>}>
+                <DashboardRoutes user={noUser} />
+              </Suspense>
+            }
+          />
+        )}
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
+    </Suspense>
   );
 };
