@@ -28,11 +28,11 @@ export const NavList = ({ user, onLogout, theme, handleTheme }) => {
             </li>
           );
         })}
-        <div className="flex w-24 h-24 border-2  border-white dark:border-dark shadow-md rounded-full mx-auto  items-center justify-center relative top-52 cursor-pointer transition-all hover:scale-95" onClick={handleTheme}>
+        <div className="flex w-24 h-24   border-[#111827] shadow-lg rounded-full mx-auto  items-center justify-center relative top-[40rem] cursor-pointer transition-all hover:scale-95" onClick={handleTheme}>
           {theme === "dark" ? (
             <CiDark size={32} color="white" />
           ) : (
-            <BsSun size={32} color="black" />
+            <BsSun size={32} color="#111827" />
           )}
         </div>
       </ul>

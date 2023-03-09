@@ -21,7 +21,7 @@ const formFields = {
   password: "",
 };
 
-export const Login = ({theme, handleTheme}) => {
+export const Login = ({ theme, handleTheme }) => {
   const { onLoginEmailAndPassword } = useAuthStore();
 
   const { onInputChange, formState, isFormValid, onResetForm } = useForm(
@@ -33,14 +33,16 @@ export const Login = ({theme, handleTheme}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     await login({
       email,
       password,
     });
-    onLoginEmailAndPassword(data);
+
+    if (data) {
+      onLoginEmailAndPassword(data);
+    }
     onResetForm();
-
-
   };
 
   return (
