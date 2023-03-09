@@ -48,7 +48,7 @@ export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
                 <ListCompanies data={data} isLoading={true} error={error} />
               }
             />
-            <Route path="/details/:id" element={<BusinessDetail />} />
+            <Route path="/details/:id" element={<BusinessDetail user={user} />} />
           </>
         )}
 
