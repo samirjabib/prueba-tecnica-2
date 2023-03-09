@@ -10,11 +10,21 @@ const { BusinessDetail, StateBusiness, ListCompanies } = lazily(() =>
 export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
   const { data, isLoading, error } = useGetCompaniesQuery();
 
+
+ 
+
   return (
     <Routes>
       <Route
         path="/"
-        element={<DashboardLayout user={user} onLogout={onLogout} theme={theme} handleTheme={handleTheme}  />}
+        element={
+          <DashboardLayout
+            user={user}
+            onLogout={onLogout}
+            theme={theme}
+            handleTheme={handleTheme}
+          />
+        }
       >
         {user.role === "client" ? (
           <>

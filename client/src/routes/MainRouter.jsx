@@ -14,6 +14,13 @@ export const AppRouter = () => {
   const { status, user, onLogoutHandle } = useAuthStore();
   const { handleThemeSwitch, theme} = useProviderTheme()
 
+  const body = document.getElementsByTagName("body")[0];
+  if (theme === "dark") {
+    body.style.background = "#111827 ";
+  }
+  if (theme === "light") {
+    body.style.background = "white ";
+  }
   return (
     <Suspense fallback={<GlobalLoading />}>
       <Routes>
