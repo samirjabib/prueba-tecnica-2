@@ -15,6 +15,19 @@ export const businessApi = createApi({
         body: data,
       }),
     }),
+    createCompany: builder.mutation({
+      query: (data) => ({
+        url: "/company",
+        method: "post",
+        body: data,
+      }),
+    }),
+    getCompanies: builder.query({
+      query: () => `/company`,
+    }),
+    getCompaniesByNit: builder.query({
+      query: (id) => `/company/${id}`,
+    }),
   }),
 });
 

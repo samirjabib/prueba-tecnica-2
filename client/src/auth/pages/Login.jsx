@@ -29,17 +29,15 @@ export const Login = () => {
     formValidations
   );
   const { email, password } = formState;
-  const [login, { isLoading, error, data, status }] = useLoginMutation();
+  const [login, { isLoading, error, data }] = useLoginMutation();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    login({
+    await login({
       email,
       password,
     });
-    if (!isLoading) {
-      onLoginEmailAndPassword(data);
-    }
+    onLoginEmailAndPassword(data);
     onResetForm();
   };
 
