@@ -1,3 +1,2 @@
-export *  from './ListCompanies'
+export *  from './Companies'
 export * from './BusinessDetail'
-export * from './StateBusiness'

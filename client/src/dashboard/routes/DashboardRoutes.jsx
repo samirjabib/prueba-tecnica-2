@@ -3,15 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useGetCompaniesQuery } from "../../store/api/businessApi";
 import { DashboardLayout } from "../components";
 
-const { BusinessDetail, StateBusiness, ListCompanies } = lazily(() =>
-  import("../pages")
-);
+const { BusinessDetail, Companies } = lazily(() => import("../pages"));
 
 export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
-  const { data, isLoading, error } = useGetCompaniesQuery();
-
-
- 
+  const { data, error } = useGetCompaniesQuery();
 
   return (
     <Routes>
@@ -26,31 +21,17 @@ export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
           />
         }
       >
-        {user.role === "client" ? (
-          <>
-            <Route
-              path="/"
-              element={
-                <ListCompanies data={data} isLoading={true} error={error} />
-              }
-            />
-            <Route path=":id" element={<BusinessDetail />} />
-          </>
-        ) : (
-          <>
-            <Route
-              path="/state-business"
-              element={<StateBusiness data={data} />}
-            />
-            <Route
-              path="/"
-              element={
-                <ListCompanies data={data} isLoading={true} error={error} />
-              }
-            />
-            <Route path="/details/:id" element={<BusinessDetail user={user} />} />
-          </>
-        )}
+        <Route
+          path="/"
+          element={<Companies data={data} isLoading={true} error={error} />}
+        />
+        <Route path=":id" element={<BusinessDetail />} />
+
+        <Route
+          path="/"
+          element={<Companies data={data} isLoading={true} error={error} />}
+        />
+        <Route path="/details/:id" element={<BusinessDetail user={user} />} />
 
         <Route path="/*" element={<Navigate to="/" />} />
       </Route>
