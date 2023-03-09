@@ -1,10 +1,13 @@
 import { InputCustom } from "../../../components";
 import { useForm } from "../../../hooks";
+import { useCreateProductCompanyMutation } from "../../../store/api/businessApi";
 
 export const AddProduct = ({handleModal}) => {
   const { formState, isFormValid, onInputChange, onResetForm, } = useForm({
     name: "",
   });
+
+  const [create, {isLoading, error}] = useCreateProductCompanyMutation()
 
   const onSubmit = (e) => {
     e.preventDefault()
