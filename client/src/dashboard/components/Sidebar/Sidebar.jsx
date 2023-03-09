@@ -2,7 +2,7 @@ import { useNavBar } from "../../hooks";
 import { NavList } from "./NavList";
 
 
-export const Sidebar = ({user, onLogout}) => {
+export const Sidebar = ({user, onLogout, theme, handleTheme}) => {
   
   
   const { handleNavbar, open, ref } = useNavBar();
@@ -36,7 +36,7 @@ export const Sidebar = ({user, onLogout}) => {
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <NavList user={user} onLogout={onLogout} />
+        <NavList user={user} onLogout={onLogout} theme={theme} handleTheme={handleTheme} />
       </aside>
       <div
         className={`w-full h-screen fixed scroll- -z-50 right-0 top-0 bg-black/70 ${

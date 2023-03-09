@@ -12,6 +12,7 @@ const { DashboardRoutes } = lazily(() => import("../dashboard"));
 
 export const AppRouter = () => {
   const { status, user, onLogoutHandle } = useAuthStore();
+  const { handleThemeSwitch, theme} = useProviderTheme()
 
   return (
     <Suspense fallback={<GlobalLoading />}>
@@ -19,14 +20,14 @@ export const AppRouter = () => {
         {status === "not-authenticated" ? (
           <Route
             path="/*"
-            element={<Login/>}
+            element={<Login theme={theme} handleTheme={handleThemeSwitch} />}
           />
         ) : (
           <Route
             path="/*"
             element={
               <Suspense fallback={<GlobalLoading />}>
-                <DashboardRoutes user={user} onLogout={onLogoutHandle} />
+                <DashboardRoutes user={user} onLogout={onLogoutHandle} theme={theme} handleTheme={handleThemeSwitch} />
               </Suspense>
             }
           />

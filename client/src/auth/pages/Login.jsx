@@ -21,7 +21,7 @@ const formFields = {
   password: "",
 };
 
-export const Login = () => {
+export const Login = ({theme, handleTheme}) => {
   const { onLoginEmailAndPassword } = useAuthStore();
 
   const { onInputChange, formState, isFormValid, onResetForm } = useForm(
@@ -44,23 +44,23 @@ export const Login = () => {
   };
 
   return (
-    <div className=" mx-auto  h-screen items-center justify-center flex flex-col bg-gray-500 dark:bg-black p-4 animate__animated animate__fadeIn animate__faster">
+    <div className=" mx-auto  h-screen items-center justify-center flex flex-col bg-white dark:bg-black p-4 animate__animated animate__fadeIn animate__faster">
       <div className=" shadow-md border border-gray-200 rounded-lg max-w-md  p-8  lg:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto  h-96">
         <form className="space-y-6 max-w-md mx-auto " onSubmit={onSubmit}>
           <div className="flex flex-row gap-4 items-center">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white  py-4">
               Login with your account
             </h3>
-            {/* <div
-              onClick={setTheme}
+            <div
+              onClick={handleTheme}
               className=" flex justify-end relative cursor-pointer border border-dark dark:border-white rounded-full p-2 transition-all hover:bg-gray-700"
             >
               {theme === "dark" ? (
                 <CiDark size={18} color="white" />
               ) : (
-                <BsSun size={18} color="white" />
+                <BsSun size={18} color="black" />
               )}
-            </div> */}
+            </div>
           </div>
           <div>
             <InputCustom

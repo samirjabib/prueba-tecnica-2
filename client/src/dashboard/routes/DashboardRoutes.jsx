@@ -7,14 +7,14 @@ const { BusinessDetail, StateBusiness, ListCompanies } = lazily(() =>
   import("../pages")
 );
 
-export const DashboardRoutes = ({ user, onLogout }) => {
+export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
   const { data, isLoading, error } = useGetCompaniesQuery();
 
   return (
     <Routes>
       <Route
         path="/"
-        element={<DashboardLayout user={user} onLogout={onLogout} />}
+        element={<DashboardLayout user={user} onLogout={onLogout} theme={theme} handleTheme={handleTheme}  />}
       >
         {user.role === "client" ? (
           <>

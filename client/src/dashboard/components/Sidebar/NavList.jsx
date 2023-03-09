@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { getNavLinks } from "../../utils";
+import { CiDark } from "react-icons/ci";
+import { BsSun } from "react-icons/BS";
 
-export const NavList = ({ user, onLogout }) => {
+export const NavList = ({ user, onLogout, theme, handleTheme }) => {
   console.log(onLogout);
   const links = getNavLinks(user);
 
@@ -10,7 +12,10 @@ export const NavList = ({ user, onLogout }) => {
       <ul className="space-y-2">
         {links.map((route) => {
           return (
-            <li key={route.id} onClick={(route.name === "Logout") ? onLogout : undefined}>
+            <li
+              key={route.id}
+              onClick={route.name === "Logout" ? onLogout : undefined}
+            >
               <NavLink
                 to={route.path}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -23,6 +28,13 @@ export const NavList = ({ user, onLogout }) => {
             </li>
           );
         })}
+        <div className="flex w-24 h-24 border-2 border-white dark:border-dark shadow-md rounded-full mx-auto  items-center justify-center relative top-52" onClick={handleTheme}>
+          {theme === "dark" ? (
+            <CiDark size={32} color="white" />
+          ) : (
+            <BsSun size={32} color="black" />
+          )}
+        </div>
       </ul>
     </div>
   );
