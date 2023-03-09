@@ -31,4 +31,4 @@ export const businessApi = createApi({
   }),
 });
 
-export const { useLoginMutation } = businessApi;
+export const { useLoginMutation,useGetCompaniesByNitQuery, useGetCompaniesQuery, useCreateCompanyMutation } = businessApi;

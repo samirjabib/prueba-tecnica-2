@@ -2,33 +2,13 @@ import { Suspense } from "react";
 import { lazily } from "react-lazily";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-const { DashboardRoutes } = lazily(() => import("../dashboard"));
 
 import { Login } from "../auth";
 import { GlobalLoading } from "../components";
 import { useAuthStore, useProviderTheme } from "../hooks";
 
-const user = {
-  auth: "authorized",
+const { DashboardRoutes } = lazily(() => import("../dashboard"));
 
-  user: {
-    name: "samir",
-    role: "admin",
-  },
-};
-
-const userTwo = {
-  auth: "authorized",
-  user: {
-    name: "juan",
-    role: "client",
-  },
-};
-
-const noUser = {
-  auth: "not-authorized",
-  user: {},
-};
 
 export const AppRouter = () => {
   const { theme, handleThemeSwitch } = useProviderTheme();
