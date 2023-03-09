@@ -3,10 +3,10 @@ import { DashboardLayout } from "../components";
 import { ListBusiness, BusinessDetail, StateBusiness } from "../pages";
 
 
-export const DashboardRoutes = () => {
+export const DashboardRoutes = ({user}) => {
   return (
     <Routes>
-      <Route path="/" element={<DashboardLayout/>}>
+      <Route path="/" element={<DashboardLayout user={user}/>}>
         <Route path="/" element={<ListBusiness/>}/>
         <Route path="/:id" element={<BusinessDetail/>}/>
         <Route path="/state-business" element={<StateBusiness/>}/>

@@ -36,7 +36,7 @@ export const AppRouter = () => {
           element={<Login setTheme={handleThemeSwitch} theme={theme} />}
         />
       ) : (
-        <Route path="/" element={<DashboardRoutes/>} />
+        <Route path="/" element={<DashboardRoutes user={user}/>} />
       )}
     </Routes>
   );

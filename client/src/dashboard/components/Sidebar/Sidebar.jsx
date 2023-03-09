@@ -1,37 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useNavBar } from "../../hooks";
+import { NavList } from "./NavList";
 
 
-export const Sidebar = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleNavbar = () => {
-    setOpen(!open);
-    console.log("click");
-  };
-
-  const body = document.getElementsByTagName("body")[0];
-
-  if (open) {
-    body.style.overflow = "hidden";
-  } else {
-    body.style.overflow = "auto";
-  }
-
-  const menuMobileRef = useRef();
-
-  useEffect(() => {
-    document.addEventListener("click", handleOutSideClick, true);
-
-    return document.removeEventListener("click", handleOutSideClick, false);
-  }, []);
-
-  const handleOutSideClick = ({ target }) => {
-    if (!menuMobileRef.current?.contains(target)) {
-      console.log("click outside");
-      setOpen(false);
-    }
-  };
-
+export const Sidebar = ({user}) => {
+  const { handleNavbar, open, ref } = useNavBar();
 
   return (
     <>
@@ -57,29 +29,12 @@ export const Sidebar = () => {
       </button>
 
       <aside
-        id="default-sidebar"
+        ref={ref}
         className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
-        aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-          <ul className="space-y-2">
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                
-                <div className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                  Icon
-                </div>
-                <span className="ml-3">Dashboard</span>
-              </a>
-            </li>
-
-          </ul>
-        </div>
+        <NavList user={user} />
       </aside>
       <div
         className={`w-full h-screen fixed scroll- -z-50 right-0 top-0 bg-black/70 ${
