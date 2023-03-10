@@ -1,9 +1,9 @@
 import { CiDark } from "react-icons/ci";
 import { BsSun } from "react-icons/BS";
-import ClipLoader from "react-spinners/ClipLoader";
 
 import { useForm } from "../../hooks/useFormHook";
-import { InputCustom } from "../../components";
+import { InputCustom, Loading } from "../../components";
+import { notifications } from '../../handler'
 
 import { useAuthStore } from "../../hooks";
 import { useLoginMutation } from "../../store/api/businessApi";
@@ -42,7 +42,6 @@ export const Login = ({ theme, handleTheme }) => {
     const { user, token } = data;
 
     onLoginEmailAndPassword({ user, token });
-
     onResetForm();
   };
 
@@ -82,7 +81,7 @@ export const Login = ({ theme, handleTheme }) => {
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
           >
             {isLoading ? (
-              <ClipLoader color="#36d7b7" size={18} />
+              <Loading color="#36d7b7" size={18} />
             ) : (
               "Login to your account"
             )}

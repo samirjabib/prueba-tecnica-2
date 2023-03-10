@@ -6,7 +6,7 @@ import { DashboardLayout } from "../components";
 const { BusinessDetail, Companies } = lazily(() => import("../pages"));
 
 export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
-  const { data, error } = useGetCompaniesQuery();
+  const { data, error, isFetching } = useGetCompaniesQuery();
 
   return (
     <Routes>
@@ -23,7 +23,7 @@ export const DashboardRoutes = ({ user, onLogout, theme, handleTheme }) => {
       >
         <Route
           path="/"
-          element={<Companies data={data} isLoading={true} error={error} user={user}/>}
+          element={<Companies data={data} isLoading={true} error={error} user={user} isFetching={isFetching}/>}
         />
         <Route path=":id" element={<BusinessDetail />} />
 

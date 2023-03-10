@@ -1,9 +1,9 @@
-import { InputCustom } from "../../../components";
+import { InputCustom, Loading } from "../../../components";
 import { useForm } from "../../../hooks";
 import { useCreateCompanyMutation } from "../../../store/api/businessApi";
 
 export const FormCrud = ({handleModal}) => {
-  const { formState, isFormValid, onInputChange, onResetForm } = useForm({
+  const { formState, onInputChange } = useForm({
     name: "",
     address: "",
     phone: "",
@@ -15,13 +15,13 @@ export const FormCrud = ({handleModal}) => {
   const [createCompany, { isLoading, error }] =
     useCreateCompanyMutation();
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
 
-    const { data } = createCompany({
+    await createCompany({
         ...formState
     })
-    console.log("data");
+    handleModal()
   };
 
   return (
@@ -60,7 +60,11 @@ export const FormCrud = ({handleModal}) => {
           className=" mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           type="submit"
         >
-          Upload
+           {isLoading ? (
+              <Loading color="#36d7b7" size={18} />
+            ) : (
+              "Upload"
+            )}
         </button>
         <button
           className=" mt-4 text-gray-400  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow hover:scale-95"

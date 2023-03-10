@@ -6,7 +6,10 @@ export const businessApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/api/v1",
   }),
-
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
+  
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (data) => ({
@@ -29,10 +32,10 @@ export const businessApi = createApi({
       query: (id) => `/company/${id}`,
     }),
     createProductCompany: builder.mutation({
-      query: (data, id) => ({
-        url: `/company/${id}`,
+      query: ({ name, inventoryId }) => ({
+        url: `/company/add-product`,
         method: "post",
-        body: data,
+        body: { name, inventoryId },
       }),
     }),
   }),

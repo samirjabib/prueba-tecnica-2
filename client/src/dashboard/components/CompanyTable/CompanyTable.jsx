@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { Loading } from "../../../components";
 
-export const CompanyTable = ({ data, isLoading, error }) => {
+export const CompanyTable = ({ data, isLoading, error, isFetching }) => {
 
 
   return (
@@ -22,6 +23,8 @@ export const CompanyTable = ({ data, isLoading, error }) => {
         </tr>
       </thead>
       <tbody>
+
+        
         {data?.map((companyData, index) => {
           const { name, address, nit, phone } = companyData;
 

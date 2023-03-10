@@ -10,7 +10,7 @@ import { useHandleModal } from "../../hooks";
 export const BusinessDetail = ({ user }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { handleModal, handleOutSideClick, modalOpen } = useHandleModal();
+  const { handleModal, modalOpen } = useHandleModal();
 
   const { data, isLoading, error } = useGetCompaniesByNitQuery(id);
 
@@ -23,12 +23,12 @@ export const BusinessDetail = ({ user }) => {
   };
 
   const { name, address, inventary, phone } = data;
-  const { products } = inventary;
+  const { products, id:inventoryId } = inventary;
   const { role } = user.user;
 
   return (
     <div className="mt-20">
-      <div className="mb-16 relative bottom-16 ml-4 " onClick={backRoute}>
+      <div className="mb-16 relative bottom-16 ml-4 cursor-pointer " onClick={backRoute}>
         <MdOutlineArrowBack size={30} color="white" />
       </div>
       <CompanyDetail name={name} address={address} phone={phone} />
@@ -40,13 +40,13 @@ export const BusinessDetail = ({ user }) => {
             type="button"
             onClick={handleModal}
           >
-            Add Company
+            Add Product
           </button>
           <Modal
             title="Add Product"
             modalOpen={modalOpen}
             handleModal={handleModal}
-            children={<AddProduct handleModal={handleModal} />}
+            children={<AddProduct handleModal={handleModal} inventoryId={inventoryId} />}
           />
         </div>
       )}

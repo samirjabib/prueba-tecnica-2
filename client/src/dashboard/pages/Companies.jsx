@@ -2,7 +2,7 @@ import { CompanyTable, FormCrud } from "../components";
 import { Modal } from "../../components";
 import { useHandleModal } from "../../hooks";
 
-export const Companies = ({ data, isLoading, error, user }) => {
+export const Companies = ({ data, isLoading, error, user, isFetching }) => {
   const { handleModal, handleOutSideClick, modalOpen } = useHandleModal();
   const { role } = user.user;
 
@@ -13,7 +13,7 @@ export const Companies = ({ data, isLoading, error, user }) => {
       </h1>
       <div className="max-w-2xl mx-auto mt-24 relative">
         <div className="overflow-x-auto shadow-md sm:rounded-lg ">
-          <CompanyTable data={data} isLoading={isLoading} error={error} />
+          <CompanyTable data={data} isLoading={isLoading} error={error} isFetching={isFetching} />
         </div>
         {role === "admin" && (
           <>
