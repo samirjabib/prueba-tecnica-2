@@ -2,6 +2,9 @@ import { Suspense } from "react";
 import { lazily } from "react-lazily";
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import { Login } from "../auth";
 import { GlobalLoading } from "../components";
@@ -9,10 +12,9 @@ import { useAuthStore, useProviderTheme } from "../hooks";
 
 const { DashboardRoutes } = lazily(() => import("../dashboard"));
 
-
 export const AppRouter = () => {
   const { status, user, onLogoutHandle } = useAuthStore();
-  const { handleThemeSwitch, theme} = useProviderTheme()
+  const { handleThemeSwitch, theme } = useProviderTheme();
 
   const body = document.getElementsByTagName("body")[0];
   if (theme === "dark") {
@@ -23,6 +25,14 @@ export const AppRouter = () => {
   }
   return (
     <Suspense fallback={<GlobalLoading />}>
+      <ToastContainer
+        autoClose={2000}
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        position={"bottom-right"}
+        theme={theme}
+      />
+      ;
       <Routes>
         {status === "not-authenticated" ? (
           <Route
@@ -34,7 +44,12 @@ export const AppRouter = () => {
             path="/*"
             element={
               <Suspense fallback={<GlobalLoading />}>
-                <DashboardRoutes user={user} onLogout={onLogoutHandle} theme={theme} handleTheme={handleThemeSwitch} />
+                <DashboardRoutes
+                  user={user}
+                  onLogout={onLogoutHandle}
+                  theme={theme}
+                  handleTheme={handleThemeSwitch}
+                />
               </Suspense>
             }
           />
@@ -44,3 +59,5 @@ export const AppRouter = () => {
     </Suspense>
   );
 };
+
+import "react-toastify/dist/ReactToastify.css";

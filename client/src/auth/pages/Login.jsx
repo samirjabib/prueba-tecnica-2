@@ -1,9 +1,9 @@
 import { CiDark } from "react-icons/ci";
 import { BsSun } from "react-icons/BS";
+import { toast } from "react-toastify";
 
 import { useForm } from "../../hooks/useFormHook";
 import { InputCustom, Loading } from "../../components";
-import { notifications } from '../../handler'
 
 import { useAuthStore } from "../../hooks";
 import { useLoginMutation } from "../../store/api/businessApi";
@@ -33,16 +33,20 @@ export const Login = ({ theme, handleTheme }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
     const { data } = await login({
       email,
       password,
     });
 
-    const { user, token } = data;
-
-    onLoginEmailAndPassword({ user, token });
-    onResetForm();
+    if (data === undefined) {
+      toast.error("Invalid User");
+    }
+    if (data.user && data.token) {
+      const { user, token } = data;
+      onLoginEmailAndPassword({ user, token });
+      toast.success("Account Logged");
+      onResetForm();
+    }
   };
 
   return (
@@ -57,7 +61,7 @@ export const Login = ({ theme, handleTheme }) => {
               Login with your account
             </h3>
           </div>
-          <div >
+          <div>
             <InputCustom
               onChange={onInputChange}
               name="email"
@@ -75,7 +79,7 @@ export const Login = ({ theme, handleTheme }) => {
               placeholder=" "
             />
           </div>
-      
+
           <button
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
