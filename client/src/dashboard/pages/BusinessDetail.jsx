@@ -1,6 +1,6 @@
-import { useNavigation, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetCompaniesByNitQuery } from "../../store/api/businessApi";
-import { ProductList, SendEmail } from "../components";
+import { ProductList } from "../components";
 import { CompanyDetail } from "../components/CompanyDetail";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { Modal } from "../../components";
@@ -38,8 +38,6 @@ export const BusinessDetail = ({ user }) => {
         name={name}
         address={address}
         phone={phone}
-        modalOpen={modalOpen}
-        handleModal={handleModal}
         inventoryId={inventoryId}
       />
       <ProductList products={products} user={user} />
@@ -53,11 +51,11 @@ export const BusinessDetail = ({ user }) => {
             Add Product
           </button>
           <Modal
-            title="Send inventary to email"
+            title="Add Product"
             modalOpen={modalOpen}
             handleModal={handleModal}
             children={
-              <SendEmail handleModal={handleModal} inventoryId={inventoryId} />
+              <AddProduct handleModal={handleModal} inventoryId={inventoryId} />
             }
           />
         </div>
