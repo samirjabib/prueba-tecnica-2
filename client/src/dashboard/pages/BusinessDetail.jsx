@@ -1,6 +1,6 @@
 import { useNavigation, useParams, useNavigate } from "react-router-dom";
 import { useGetCompaniesByNitQuery } from "../../store/api/businessApi";
-import { ProductList } from "../components";
+import { ProductList, SendEmail } from "../components";
 import { CompanyDetail } from "../components/CompanyDetail";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { Modal } from "../../components";
@@ -23,15 +23,25 @@ export const BusinessDetail = ({ user }) => {
   };
 
   const { name, address, inventary, phone } = data;
-  const { products, id:inventoryId } = inventary;
+  const { products, id: inventoryId } = inventary;
   const { role } = user.user;
 
   return (
     <div className="mt-20">
-      <div className="mb-16 relative bottom-16 ml-4 cursor-pointer " onClick={backRoute}>
+      <div
+        className="mb-16 relative bottom-16 ml-4 cursor-pointer "
+        onClick={backRoute}
+      >
         <MdOutlineArrowBack size={30} color="white" />
       </div>
-      <CompanyDetail name={name} address={address} phone={phone} />
+      <CompanyDetail
+        name={name}
+        address={address}
+        phone={phone}
+        modalOpen={modalOpen}
+        handleModal={handleModal}
+        inventoryId={inventoryId}
+      />
       <ProductList products={products} user={user} />
       {role === "admin" && (
         <div className=" w-full flex max-w-md mx-auto justify-end">
@@ -43,10 +53,12 @@ export const BusinessDetail = ({ user }) => {
             Add Product
           </button>
           <Modal
-            title="Add Product"
+            title="Send inventary to email"
             modalOpen={modalOpen}
             handleModal={handleModal}
-            children={<AddProduct handleModal={handleModal} inventoryId={inventoryId} />}
+            children={
+              <SendEmail handleModal={handleModal} inventoryId={inventoryId} />
+            }
           />
         </div>
       )}
